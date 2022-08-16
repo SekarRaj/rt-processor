@@ -1,0 +1,18 @@
+#spring.sql.init.continue-on-error=false
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres?schema=postgres
+    username: postgres
+    password: password
+    initialization-mode: always
+    pool:
+      enabled: true
+      initial-size: 2
+      max-size: 3
+      max-idle-time: 1s
+      validation-query: "SELECT 1"
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
