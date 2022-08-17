@@ -30,19 +30,21 @@ public class DealController {
 
     @GetMapping
     public Flux<Deal> getAll() {
-        logger.info("Invoked getAll");
+        dealService.getDeals();
         return dealService.getDeals();
     }
 
     @PostMapping("/create")
-    public Mono<Deal> save(DealDTO deal) {
-        logger.info("Invoked save");
+    public Mono<Deal> save(@RequestBody DealDTO deal) {
+        logger.info(deal.toString());
+        dealService.createDeal(deal);
         return dealService.createDeal(deal);
     }
 
     @PostMapping(value = "/create-list")
     public Flux<Deal> save(@RequestBody DealsDTO deals) {
-        logger.info("Invoked save list {}", LocalDateTime.now());
+        logger.info(deals.toString());
+        dealService.createDeals(deals);
         return dealService.createDeals(deals);
     }
 }

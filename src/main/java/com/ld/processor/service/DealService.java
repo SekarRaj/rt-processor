@@ -22,7 +22,7 @@ public class DealService {
 
     public Flux<Deal> createDeals(DealsDTO dto) {
         List<Deal> deals = dto.deals().stream().map(Deal::from).toList();
-        return repository.saveAll(Flux.fromIterable(deals));
+        return repository.saveAllByIteration(Flux.fromIterable(deals));
     }
 
     public Flux<Deal> getDeals() {
